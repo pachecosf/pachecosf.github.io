@@ -1,10 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+
 <HTML>
 
 <HEAD>
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <title>Bootstrap 4 landing page</title>
+    <!-- add bootstrap css file -->
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
 </HEAD>
+<BODY>
+
 <!-- navbar -->
 <nav class="navbar navbar-expand-lg fixed-top ">
     <a class="navbar-brand" href="#">Home</a>
@@ -14,30 +23,57 @@
     </button>
     <div class="collapse navbar-collapse " id="navbarSupportedContent">
         <ul class="navbar-nav mr-4">
+
             <li class="nav-item">
-                <a class="nav-link" data-value="about" href="#">About</a></li>
-            <li class="nav-item">
-                <a class="nav-link " data-value="portfolio" href="#">Portfolio</a>
+                <a class="nav-link" data-value="about" href="#">About</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link " data-value="blog" href="#">Blog</a></li>
-            <li class="nav-item">
-                <a class="nav-link " data-value="team" href="#"> Team</a></li>
-            <li class="nav-item">
-                <a class="nav-link " data-value="contact" href="#">Contact</a></li>
         </ul>
+
     </div>
 </nav>
-<BODY>
-<div class="overlay"></div>
-<div class="container">
+
+
+<!-- header -->
+<header class="header ">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="description ">
+            <h1> Numerical Analysis
+                <p> This website is a tool to help fellow students learn about the key concepts of Numerical
+                    Analysis as
+                    well as look at implementations of the algorithms.
+                </p>
+                <button class="btn btn-outline-secondary btn-lg">Start</button>
+            </h1>
+        </div>
+    </div>
+
+</header>
+
+
+<div class="about" id="about">
+    <div class="overlay"></div>
+    <div class="container">
+        <h1 class="text-center">About Me</h1>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-12">
+                <img src="images/aboutme.jpg" class="img-fluid">
+                <span class="text-justify">Developer</span>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-12 desc">
+
+                <h3>Austin Wimberley</h3>
+                <p>
+                    This is blank. This is blank. This is blank. This is blank. This is blank.
+                </p>
+            </div>
+        </div>
+    </div>
 </div>
-<div class="description ">
-    <h1>    Numerical Analysis
-        <p>    This website is a tool to help fellow students learn about the key concepts of Numerical Analysis as well as look at implementations of the algorithms.
-        </p>
-        <button class="btn btn-outline-secondary btn-lg">Start</button>   </h1>
-</div>
+<!-- jQuery CDN -->
+<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<!-- Bootstrap Js CDN -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript" src='js/main.js'></script>
 </BODY>
 
