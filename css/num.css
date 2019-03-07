@@ -30,18 +30,11 @@ html,h1,h2,h3,h4,h5,h6,a{
     background:#fff !important;
 }
 
-/*header style*/
-.header{
-    position: relative;
-    background-size: cover;
-    background-position: center;
-}
-
 body {
     background-image: url(../images/headerback.jpg);
     background-attachment: fixed;
     background-size: cover;
-    background-position: center;
+    background-position: center bottom;
 }
 
 .overlay{
@@ -63,33 +56,49 @@ body {
 }
 .whitepage{
     position: absolute;
+    top: 10%;
     margin-left: auto;
     margin-right: auto;
     left: 0;
     right: 0;
-    height: 100%;
     width: 80%;
+    height: auto;
+    overflow: auto;
     min-width: 60em;
-    top: 0;
     background: rgba(255, 255, 255, 1.0) center;
 }
 .description{
-    position: absolute;
+    display: block;
     top: 10%;
     margin: auto;
     padding: 2em;
     padding-bottom: 20%;
-
 }
 .description h1{
     display: block;
+    margin-left: 10%;
     color:#000000;
     font-size: 60px;
+}
+.description h2{
+    display: block;
+    margin-left: 10%;
+    color:#000000;
+}
+.description h3{
+    display: block;
+    margin-left: 10%;
+    color:#000000;
+}.description h4{
+    display: block;
+    margin-left: 10%;
+    color:#000000;
 }
 .description p{
     color:#666;
     font-size: 20px;
     width: 80%;
+    margin-left: 10%;
     line-height: 1.5;
 }
 .about{
