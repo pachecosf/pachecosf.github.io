@@ -10,65 +10,245 @@
     <script type="text/javascript" async
             src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
     </script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
 <!-- navbar -->
-<nav class="navbar navbar-expand-lg fixed-top ">
-    <a class="navbar-brand" href="#">Home</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse " id="navbarSupportedContent">
-        <ul class="navbar-nav mr-4">
-
-            <li class="nav-item">
-                <a class="nav-link" data-value="about" href="#">About</a>
-            </li>
-        </ul>
-
-    </div>
-</nav>
-<div class="numericalpage" id="newtons">
-    <div class="container">
-        <div class="whitepage">
-        <div class="description ">
-            <h1> Newton's Method </h1>
-                <p> Newton's method, also known as the Newton-Raphson method, is one of the most
-                    well-known algorithms for finding roots of a function.
-                    Newton's Method is an iterative algorithm that is based on Taylor polynomials.
-                </p>
-                <p>
-                    How to find consecutive  p<sub>i</sub>
-                    $$p_i = p_{i-1} - \frac{f(p_{i-1})}{f'(p_{i-1})}$$
-                </p>
-                <p> Geometrically, (p<sub>1</sub>, 0) is the intersection of the x-axis and the tangent
-                    of the graph of f at (p<sub>0</sub>, f (p<sub>0</sub>)). Visualization of how the method works: <br><br>
-                    <img src="http://tutorial.math.lamar.edu/Classes/CalcI/NewtonsMethod_Files/image001.png" alt="Newton's Method">
-                    <br>Image by <a href="http://tutorial.math.lamar.edu/Classes/CalcI/NewtonsMethod.aspx">Paul Dawkins</a>
-                    <br><br>
-                </p>
-
-            <h2> Examples </h2>
-                <p>
-                    Find a root for f(x) = x<sup>3</sup> + x - 4 that agrees to the fifth decimal place
-                </p>
-                <h4>1<sup>st</sup> pick a good value to start the iterations</h4>
-                <p>
-                    Find an interval on [a, b] where f(a) and f(b) have different signs
-                    <br>f(0) = -2 & f(2) = 6 so on [0, 2] using the Intermediate Value Theorem,
-                    we know there exists some value c for which f(c) = 0
-                    <br>We can choose p<sub>0</sub> = 1
-                </p>
-                <h4>Run Iterations until f(p<sub>0</sub>) - 0 < tolerance</h4>
+<div class="container">
+    <nav>
+        <div class="nav-xbootstrap">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="javascript:void(0)">Methods<span class="glyphicon glyphicon-chevron-down iconsize"></span></a>
+                    <ul class="dropdown">
+                        <li><a href="#" data-value="newtons">Newton's Method</a></li>
+                        <li><a href="">Bisection Method</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
+        <div class="nav-bg-xbootstrap">
+            <div class="navbar-xbootstrap"> <span></span> <span></span> <span></span> </div>
+            <a href="" class="title-mobile">Numerical Analysis</a>
         </div>
+    </nav>
+    <div class='content'>
     </div>
 </div>
+
+<div class="d-flex" id="wrapper">
+
+    <div class="numericalpage" id="newtons">
+        <div class="container">
+            <div class="whitepage">
+                <div class="description ">
+                    <h1> Newton's Method </h1>
+                    <p> Newton's method, also known as the Newton-Raphson method, is one of the most
+                        well-known algorithms for finding roots of a function.
+                        Newton's Method is an iterative algorithm that is based on Taylor polynomials.
+                    </p>
+                    <p>
+                        How to find consecutive p<sub>i</sub>
+                        $$p_i = p_{i-1} - \frac{f(p_{i-1})}{f'(p_{i-1})}$$
+                    </p>
+                    <p> Geometrically, (p<sub>1</sub>, 0) is the intersection of the x-axis and the tangent
+                        of the graph of f at (p<sub>0</sub>, f (p<sub>0</sub>)). Visualization of how the method works:
+                        <br><br>
+                        <img src="http://tutorial.math.lamar.edu/Classes/CalcI/NewtonsMethod_Files/image001.png"
+                             alt="Newton's Method">
+                        <br>Image by <a href="http://tutorial.math.lamar.edu/Classes/CalcI/NewtonsMethod.aspx">Paul
+                            Dawkins</a>
+                        <br><br>
+                    </p>
+
+                    <h2> Examples </h2>
+                    <p>
+                        Find a root for f(x) = x<sup>3</sup> + x - 4 that agrees to the fifth decimal place
+                    </p>
+                    <h4>1<sup>st</sup> pick a good value to start the iterations</h4>
+                    <p>
+                        Find an interval on [a, b] where f(a) and f(b) have different signs
+                        <br>f(0) = -2 & f(2) = 6 so on [0, 2] using the Intermediate Value Theorem,
+                        we know there exists some value c for which f(c) = 0
+                        <br>We can choose p<sub>0</sub> = 1
+                    </p>
+                    <h4>Run Iterations until |f(p<sub>0</sub>) - 0| < tolerance</h4>
+                    <p>$$p_i = p_{i-1} - \frac{f(p_{i-1})}{f'(p_{i-1})}$$
+                        $$p_0 = 1$$
+                        $$p_1 = 1 - \frac{-2}{4} = 1.5$$
+                        $$p_2 = 1.5 - \frac{0.875}{7.75} = 1.3871$$
+                        $$p_3 = 1.3871 - \frac{0.0559448}{6.77214} = 1.37884$$
+                        $$p_4 = 1.3784 - \frac{0.000290257}{6.7036} = 1.3788$$
+                        $$f(1.3788) = 0.00000000775498$$
+                        Using this algorithm we have found that 1.3788 is a root of x<sup>3</sup> + x - 4
+                        that agrees up to the 9<sup>th</sup> decimal place. <br>
+                        An alternative way to work through the calculations is by using a table to represent each step:
+                    </p>
+                    <table>
+                        <tr>
+                            <th>i</th>
+                            <th>p<sub>i</sub></th>
+                            <th>f(p<sub>i</sub>)</th>
+                            <th>p<sub>i+1</sub></th>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>-2</td>
+                            <td>1.5</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>1.5</td>
+                            <td>0.875</td>
+                            <td>1.3871</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>1.3871</td>
+                            <td>0.0559448</td>
+                            <td>1.3784</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>1.3784</td>
+                            <td>0.000290257</td>
+                            <td>1.3788</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>1.3788</td>
+                            <td>0.00000000775498</td>
+                            <td></td>
+                        </tr>
+                    </table>
+                    <h2><br>Code for C++ <br><br></h2>
+
+                    <!-- HTML generated using hilite.me -->
+                    <div style="background: #ffffff; overflow:auto;width:100%;">
+                        <table>
+                            <tr>
+                                <td><pre style="margin: 0; line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47</pre>
+                                </td>
+                                <td><pre style="margin: 0; line-height: 125%"><span style="color: #008000">// Newton&#39;s Method</span>
+<span style="color: #008000">// Implementation for c++</span>
+<span style="color: #008000">// Code by Austin Wimberley</span>
+
+<span style="color: #0000ff">#include &lt;bits/stdc++.h&gt;</span>
+<span style="color: #0000ff">using</span> <span style="color: #0000ff">namespace</span> std;
+
+<span style="color: #0000ff">static</span> <span style="color: #2b91af">int</span> counter = 0;
+<span style="color: #2b91af">double</span> delta = 0.001;
+
+<span style="color: #008000">// Main function to find the root of</span>
+<span style="color: #008000">// MODIFY HERE TO IMPLEMENT FOR YOUR FUNCTION</span>
+<span style="color: #2b91af">double</span> fun(<span style="color: #2b91af">double</span> x) {
+    <span style="color: #2b91af">double</span> ans = pow(x, 3.0) + x - 4;
+    <span style="color: #0000ff">return</span> ans;
+}
+
+<span style="color: #008000">// Derivative of the main function</span>
+<span style="color: #2b91af">double</span> funDir(<span style="color: #2b91af">double</span> x) {
+    <span style="color: #2b91af">double</span> ans = (fun(x + delta) - fun(x)) / delta;
+    <span style="color: #0000ff">return</span> ans;
+}
+
+<span style="color: #008000">// Function for finding the next p</span>
+<span style="color: #2b91af">double</span> nextP(<span style="color: #2b91af">double</span> x) {
+    <span style="color: #2b91af">double</span> ans = x - fun(x) / funDir(x);
+    <span style="color: #0000ff">return</span> ans;
+}
+
+<span style="color: #2b91af">double</span> applyFormula(<span style="color: #2b91af">double</span> x, <span
+                                            style="color: #2b91af">double</span> <span
+                                            style="color: #0000ff">const</span> TOL) {
+    <span style="color: #0000ff">while</span> (abs(fun(x)) &gt; TOL &amp;&amp; counter &lt; 1000) {
+        printf(<span style="color: #a31515">&quot;%4d\t%10f\t%10f\t%10f\n&quot;</span>, counter++, x, fun(x), nextP(x));
+        x = nextP(x);
+    }
+    <span style="color: #0000ff">return</span> x;
+}
+
+<span style="color: #008000">// Driver Function </span>
+<span style="color: #2b91af">int</span> main()
+{
+    <span style="color: #008000">// MODIFY HERE FOR INITIAL P AND TOLERANCE</span>
+    <span style="color: #2b91af">double</span> p0 = 1.0;
+    <span style="color: #2b91af">double</span> <span style="color: #0000ff">const</span> TOL = 0.00001;
+    <span style="color: #2b91af">double</span> ans = applyFormula(p0, TOL);
+    cout &lt;&lt; <span style="color: #a31515">&quot;\nRoot found at &quot;</span> &lt;&lt; ans;
+    <span style="color: #0000ff">return</span> 0;
+}
+</pre>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /#wrapper -->
 <!-- jQuery CDN -->
 <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
 <!-- Bootstrap Js CDN -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script type="text/javascript" src='js/main.js'></script>
+<!-- Popper.JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+        integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+        crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 </body>
 </html>

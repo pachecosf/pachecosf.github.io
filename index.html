@@ -13,23 +13,29 @@
 </HEAD>
 
 <BODY>
-
-    <!-- navbar -->
-    <nav class="navbar navbar-expand-lg fixed-top ">
-        <a class="navbar-brand" href="#">Home</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-        <div class="collapse navbar-collapse " id="navbarSupportedContent">
-            <ul class="navbar-nav mr-4">
-
-                <li class="nav-item">
-                    <a class="nav-link" data-value="about" href="#">About</a>
-                </li>
-            </ul>
-
+ <!-- navbar -->
+    <div class="container">
+        <nav>
+            <div class="nav-xbootstrap">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="javascript:void(0)">Methods<span class="glyphicon glyphicon-chevron-down iconsize"></span></a>
+                        <ul class="dropdown">
+                            <li><a href="" data-value="newtons">Newton's Method</a></li>
+                            <li><a href="">Bisection Method</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </div>
+            <div class="nav-bg-xbootstrap">
+                <div class="navbar-xbootstrap"> <span></span> <span></span> <span></span> </div>
+                <a href="" class="title-mobile">Numerical Analysis</a>
+            </div>
+        </nav>
+        <div class='content'>
         </div>
-    </nav>
+    </div>
 
 
     <!-- header -->
@@ -71,7 +77,6 @@
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <!-- Bootstrap Js CDN -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src='js/main.js'></script>
 </BODY>
 
 </HTML>
