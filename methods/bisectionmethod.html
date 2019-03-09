@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Numerical Analysis</title>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="css/num.css">
+    <link rel="stylesheet" type="text/css" href="../css/num.css">
     <script type="text/javascript" async
             src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
     </script>
@@ -20,11 +20,11 @@
     <nav>
         <div class="nav-xbootstrap">
             <ul>
-                <li><a href="index.html">Home</a></li>
+                <li><a href="../index.html">Home</a></li>
                 <li><a href="javascript:void(0)">Methods<span class="glyphicon glyphicon-chevron-down iconsize"></span></a>
                     <ul class="dropdown">
-                        <li><a href="#" data-value="newtons">Newton's Method</a></li>
-                        <li><a href="">Bisection Method</a></li>
+                        <li><a href="#">Bisection Method</a></li>
+                        <li><a href="newtonsmethod.html">Newton's Method</a></li>
                     </ul>
                 </li>
             </ul>
@@ -44,88 +44,85 @@
         <div class="container">
             <div class="whitepage">
                 <div class="description ">
-                    <h1> Newton's Method </h1>
-                    <p> Newton's method, also known as the Newton-Raphson method, is one of the most
-                        well-known algorithms for finding roots of a function.
-                        Newton's Method is an iterative algorithm that is based on Taylor polynomials.
+                    <h1> Bisection Method </h1>
+                    <p> We'll start with one of the most basic algorithms to solve a root-finding problem. A root finding problem
+                        is finding the x such that f(x) = 0, for a given function f. The Bisection method is based on the Intermediate Value
+                        Theorem, that says there must exist at least one root on the interval (a,b) for f(x), if a and b have different
+                        signs and f(x) is continuous on the interval (a,b). <br>
+                        To begin set a<sub>1</sub> = a and b<sub>1</sub> = b, and let p<sub>1</sub> be the midpoint of [a,b]:
+                        $$p_1 = \frac{a_1 + b_1}{2}$$
+                        &bull; if f(p<sub>1</sub>) and f(a<sub>1</sub>) have the same sign, set a<sub>2</sub> = p<sub>1</sub> and b<sub>2</sub> = b<sub>1</sub> <br>
+                        &bull; if f(p<sub>1</sub>) and f(b<sub>1</sub>) have the same sign, set b<sub>2</sub> = p<sub>1</sub> and a<sub>2</sub> = a<sub>1</sub>
                     </p>
                     <p>
-                        How to find consecutive p<sub>i</sub>
-                        $$p_i = p_{i-1} - \frac{f(p_{i-1})}{f'(p_{i-1})}$$
-                    </p>
-                    <p> Geometrically, (p<sub>1</sub>, 0) is the intersection of the x-axis and the tangent
-                        of the graph of f at (p<sub>0</sub>, f (p<sub>0</sub>)). Visualization of how the method works:
-                        <br><br>
-                        <img src="http://tutorial.math.lamar.edu/Classes/CalcI/NewtonsMethod_Files/image001.png"
-                             alt="Newton's Method">
-                        <br>Image by <a href="http://tutorial.math.lamar.edu/Classes/CalcI/NewtonsMethod.aspx">Paul
-                            Dawkins</a>
-                        <br><br>
+                        Keep iterating until f(p<sub>i</sub>) = 0 or |f(p<sub>i</sub>) - 0| < tolerance
                     </p>
 
                     <h2> Examples </h2>
                     <p>
                         Find a root for f(x) = x<sup>3</sup> + x - 4 that agrees to the fifth decimal place
                     </p>
-                    <h4>1<sup>st</sup> pick a good value to start the iterations</h4>
+                    <h4>1<sup>st</sup> find an interval to begin iterations on</h4>
                     <p>
                         Find an interval on [a, b] where f(a) and f(b) have different signs
                         <br>f(0) = -2 & f(2) = 6 so on [0, 2] using the Intermediate Value Theorem,
                         we know there exists some value c for which f(c) = 0
-                        <br>We can choose p<sub>0</sub> = 1
                     </p>
-                    <h4>Run Iterations until |f(p<sub>0</sub>) - 0| < tolerance</h4>
-                    <p>$$p_i = p_{i-1} - \frac{f(p_{i-1})}{f'(p_{i-1})}$$
-                        $$p_0 = 1$$
-                        $$p_1 = 1 - \frac{-2}{4} = 1.5$$
-                        $$p_2 = 1.5 - \frac{0.875}{7.75} = 1.3871$$
-                        $$p_3 = 1.3871 - \frac{0.0559448}{6.77214} = 1.37884$$
-                        $$p_4 = 1.3784 - \frac{0.000290257}{6.7036} = 1.3788$$
-                        $$f(1.3788) = 0.00000000775498$$
-                        Using this algorithm we have found that 1.3788 is a root of x<sup>3</sup> + x - 4
-                        that agrees up to the 9<sup>th</sup> decimal place. <br>
-                        An alternative way to work through the calculations is by using a table to represent each step:
-                    </p>
+                    <h4>Run Iterations until f(p<sub>i</sub>) = 0 or |f(p<sub>i</sub>) - 0| < tolerance</h4>
                     <table>
                         <tr>
                             <th>i</th>
+                            <th>a<sub>i</sub></th>
+                            <th>b<sub>i</sub></th>
                             <th>p<sub>i</sub></th>
                             <th>f(p<sub>i</sub>)</th>
-                            <th>p<sub>i+1</sub></th>
                         </tr>
                         <tr>
+                            <td>1</td>
                             <td>0</td>
+                            <td>2</td>
                             <td>1</td>
                             <td>-2</td>
-                            <td>1.5</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>1.5</td>
-                            <td>0.875</td>
-                            <td>1.3871</td>
                         </tr>
                         <tr>
                             <td>2</td>
-                            <td>1.3871</td>
-                            <td>0.0559448</td>
-                            <td>1.3784</td>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>1.5</td>
+                            <td>0.875</td>
                         </tr>
                         <tr>
                             <td>3</td>
-                            <td>1.3784</td>
-                            <td>0.000290257</td>
-                            <td>1.3788</td>
+                            <td>1</td>
+                            <td>1.5</td>
+                            <td>1.25</td>
+                            <td>-0.796875</td>
                         </tr>
                         <tr>
                             <td>4</td>
-                            <td>1.3788</td>
-                            <td>0.00000000775498</td>
-                            <td></td>
+                            <td>1.250000</td>
+                            <td>1.500000</td>
+                            <td>1.375000</td>
+                            <td>-0.025391</td>
+                        </tr>
+                        <tr>
+                            <td>17</td>
+                            <td>1.378784</td>
+                            <td>1.378815</td>
+                            <td>1.378799</td>
+                            <td>0.000018</td>
+                        </tr>
+                        <tr>
+                            <td>18</td>
+                            <td>1.378784</td>
+                            <td>1.378799</td>
+                            <td>1.378792</td>
+                            <td>-0.000033</td>
                         </tr>
                     </table>
+                    <p>So after 18 iterations we found a root at 1.378792, so while simple to implement there are better algorithms
+                    that can be used. </p>
                     <h2><br>Code for C++ <br><br></h2>
-
                     <!-- HTML generated using hilite.me -->
                     <div style="background: #ffffff; overflow:auto;width:100%;">
                         <table>
@@ -170,23 +167,14 @@
 38
 39
 40
-41
-42
-43
-44
-45
-46
-47</pre>
-                                </td>
-                                <td><pre style="margin: 0; line-height: 125%"><span style="color: #008000">// Newton&#39;s Method</span>
+41</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #008000">// Bisection Method</span>
 <span style="color: #008000">// Implementation for c++</span>
 <span style="color: #008000">// Code by Austin Wimberley</span>
 
 <span style="color: #0000ff">#include &lt;bits/stdc++.h&gt;</span>
 <span style="color: #0000ff">using</span> <span style="color: #0000ff">namespace</span> std;
 
-<span style="color: #0000ff">static</span> <span style="color: #2b91af">int</span> counter = 0;
-<span style="color: #2b91af">double</span> delta = 0.001;
+<span style="color: #0000ff">static</span> <span style="color: #2b91af">int</span> counter = 1;
 
 <span style="color: #008000">// Main function to find the root of</span>
 <span style="color: #008000">// MODIFY HERE TO IMPLEMENT FOR YOUR FUNCTION</span>
@@ -195,50 +183,41 @@
     <span style="color: #0000ff">return</span> ans;
 }
 
-<span style="color: #008000">// Derivative of the main function</span>
-<span style="color: #2b91af">double</span> funDir(<span style="color: #2b91af">double</span> x) {
-    <span style="color: #2b91af">double</span> ans = (fun(x + delta) - fun(x)) / delta;
-    <span style="color: #0000ff">return</span> ans;
-}
-
-<span style="color: #008000">// Function for finding the next p</span>
-<span style="color: #2b91af">double</span> nextP(<span style="color: #2b91af">double</span> x) {
-    <span style="color: #2b91af">double</span> ans = x - fun(x) / funDir(x);
-    <span style="color: #0000ff">return</span> ans;
-}
-
-<span style="color: #2b91af">double</span> applyFormula(<span style="color: #2b91af">double</span> x, <span
-                                            style="color: #2b91af">double</span> <span
-                                            style="color: #0000ff">const</span> TOL) {
-    <span style="color: #0000ff">while</span> (abs(fun(x)) &gt; TOL &amp;&amp; counter &lt; 1000) {
-        printf(<span style="color: #a31515">&quot;%4d\t%10f\t%10f\t%10f\n&quot;</span>, counter++, x, fun(x), nextP(x));
-        x = nextP(x);
+<span style="color: #2b91af">double</span> applyFormula(<span style="color: #2b91af">double</span> a, <span style="color: #2b91af">double</span> b, <span style="color: #2b91af">double</span> <span style="color: #0000ff">const</span> TOL) {
+    <span style="color: #2b91af">double</span> p = (a+b) / 2;
+    <span style="color: #0000ff">while</span> (abs(fun(p)) &gt; TOL &amp;&amp; counter &lt; 1000) {
+        printf(<span style="color: #a31515">&quot;%4d\t%10f\t%10f\t%10f\t%10f\n&quot;</span>, counter++, a, b, p, fun(p));
+        <span style="color: #0000ff">if</span> (fun(a) &gt; 0 &amp;&amp; fun(p) &gt; 0 || fun(a) &lt; 0 &amp;&amp; fun(p) &lt; 0) {
+            a = p;
+        } <span style="color: #0000ff">else</span> {
+            b = p;
+        }
+        p = (a+b) / 2;
     }
-    <span style="color: #0000ff">return</span> x;
+    <span style="color: #0000ff">return</span> p;
 }
 
-<span style="color: #008000">// Driver Function </span>
+<span style="color: #008000">// Driver Function</span>
 <span style="color: #2b91af">int</span> main()
 {
-    <span style="color: #008000">// MODIFY HERE FOR INITIAL P AND TOLERANCE</span>
-    <span style="color: #2b91af">double</span> p0 = 1.0;
+    <span style="color: #008000">// MODIFY HERE FOR INITIAL INTERVAL AND TOLERANCE</span>
+    <span style="color: #2b91af">double</span> a0 = 0.0;
+    <span style="color: #2b91af">double</span> b0 = 2.0;
     <span style="color: #2b91af">double</span> <span style="color: #0000ff">const</span> TOL = 0.00001;
-    <span style="color: #2b91af">double</span> ans = applyFormula(p0, TOL);
+    <span style="color: #2b91af">double</span> ans = applyFormula(a0, b0, TOL);
     cout &lt;&lt; <span style="color: #a31515">&quot;\nRoot found at &quot;</span> &lt;&lt; ans;
     <span style="color: #0000ff">return</span> 0;
 }
-</pre>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
+</pre></td></tr></table></div>
 
-
+                    <p>
+                        <br><br>
+                        <a href="newtonsmethod.html" class="btn btn-outline-secondary btn-lg">Newton's Method</a>
+                    </p>
                 </div>
             </div>
         </div>
     </div>
-
 </div>
 <!-- /#wrapper -->
 <!-- jQuery CDN -->
