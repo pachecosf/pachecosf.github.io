@@ -128,33 +128,83 @@
 
                     <h2><br>Calculator</h2>
 
-
+                    <div class="container-fluid">
                     <form name="Numbers" action="" method="post">
-                        x^3 = <input type="text" name="x^3" id="a3" value="">
-                        x^2 = <input type="text" name="x^2" id="a2" value="">
-                        x = <input type="text" name="x" id="a1" value="">
-                        b = <input type="text" name="+b" id="a0" value="">
+                        x^3 = <input type="text" name="a3" id="a3" value="">
+                        x^2 = <input type="text" name="a2" id="a2" value="">
+                        x = <input type="text" name="a1" id="a1" value="">
+                        b = <input type="text" name="a0" id="a0" value="">
                         <br></br>start = <input type="text" name="start" id="start" value="">
                         <input type="submit" name="Submit" value="Submit"/>
                     </form>
                     <?php
-
-    //session_start();
-    if($_POST == $_SESSION['oldPOST']) $_POST = array(); else $_SESSION['oldPOST'] = $_POST;
-    if(isset($_POST["a3"])) {
-        // Code goes here if user submitted form.
-        $a3 = $_POST["a3"];
-        $a2 = $_POST["a2"];
-        $a1 = $_POST["a1"];
-        $a0 = $_POST["a0"];
-        $start = $_POST["start"];
-
-        echo "<p>$a3 $a2 $a1 $0 $start</p>";
-
+                    function orig($x, $a3, $a2, $a1, $a0) {
+                        $retVal = $a3 * pow($x, 3) +
+                            $a2 * pow($x, 2) +
+                            $a1 * $x + $a0;
+                        return $retVal;
                     }
 
+                    function origDir($x, $a3, $a2, $a1, $a0) {
+                        $retVal = (orig($x + 0.001, $a3, $a2, $a1, $a0) -
+                                orig($x, $a3, $a2, $a1, $a0)) / 0.001;
+                        return $retVal;
+                    }
 
+                    function nextP($x, $a3, $a2, $a1, $a0) {
+                        $retVal = $x - orig($x, $a3, $a2, $a1, $a0) /
+                            origDir($x, $a3, $a2, $a1, $a0);
+                        return $retVal;
+                    }
+
+                    function applyFormula($x, $a3, $a2, $a1, $a0) {
+                        $ctr = 1;
+                        while (abs(orig($x, $a3, $a2, $a1, $a0)) > 0.00001 && $ctr < 100) {
+                            echo "<tr><th>$ctr</th>";
+                            echo "<th>$x</th>";
+                            $fofx = orig($x, $a3, $a2, $a1, $a0);
+                            $x = nextP($x, $a3, $a2, $a1, $a0);
+                            $ctr++;
+                            echo "<th>$fofx</th>";
+                            echo "<th>$x</th>";
+                            echo "</tr>";
+                        }
+                        return $x;
+                    }
+
+                    //session_start();
+                    if($_POST == $_SESSION['oldPOST']) $_POST = array(); else $_SESSION['oldPOST'] = $_POST;
+                    if($_POST["a3"]) {
+                        // Code goes here if user submitted form.
+                        $a3 = $_POST["a3"];
+                        $a2 = $_POST["a2"];
+                        $a1 = $_POST["a1"];
+                        $a0 = $_POST["a0"];
+                        $start = $_POST["start"];
+
+                        $fa3 = floatval($a3);
+                        $fa2 = floatval($a2);
+                        $fa1 = floatval($a1);
+                        $fa0 = floatval($a0);
+                        $fst = floatval($start);
+
+                        echo "<br><br><table>";
+                        echo "<tr>
+                            <th>i</th>
+                            <th>p<sub>i</sub></th>
+                            <th>f(p<sub>i</sub>)</th>
+                            <th>p<sub>i+1</sub></th>
+                            </tr>";
+                        $answer = applyFormula($fst, $fa3, $fa2, $fa1, $fa0);
+                        $fofa = orig($answer, $fa3, $fa2, $fa1, $fa0);
+                        echo "</table>";
+                        echo "<p><br>For the function $fa3 x^3 + $fa2 x^2 + $fa1 x + $fa0 <br>
+                               There is a root at $answer <br>
+                               With f($answer) = $fofa<p/>";
+
+                    }
                     ?>
+                    </div>
                     <h2><br>Code for C++ <br><br></h2>
 
                     <!-- HTML generated using hilite.me -->
